@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "printinglog"
+version = "0.0.1"
+authors = [{ name="Tahko", email="tahkodev@gmail.com"}]
+description = "Python logging instead of complicated print"
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = ["loguru", "logging", "logger", "log"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Developers",
+    "Topic :: System :: Logging",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/danjeltahko/printinglog"
+Issues = "https://github.com/danjeltahko/printinglog/issues"
