@@ -1,0 +1,3 @@
+# Simple Logging Module
+
+I've been using pythons built-in logging for my previous projects, but i discovered that it doesn't work as expected when running cronjobs in docker containers. The logger fails to write to the specified file because cronjobs operate in a limited environment with different permissions. They often capture standard output and error to a default file, usually ```cron.log``` in my case. While there might be ways to fix this, as a coder, it feels much better to write my own logging module; it would be a disgrace otherwise. So with this module, i can read the logs from cron.log since it uses print statements with logging formatting.
