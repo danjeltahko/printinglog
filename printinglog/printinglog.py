@@ -23,9 +23,29 @@ default_colors = {
 
 class Logger:
     """
+    A simple Logger class to print formatted and colored log messages.
+
+    Logging options available: INFO, ERROR, WARNING, DEBUG.
+
+    The logging format and colors can be customized.
+
+    Available formats:
+        - simple: Prints log with only the type of log (e.g., INFO, ERROR) along with the message.
+        - logging: Prints log with datetime, type of log along with the message.
+        - detailed: Prints log with datetime, filename, type of log along with the message.
+        - long: Prints log with datetime, filename, function, type of log along with the message.
+
     Args:
-        format(str): simple | logging | detailed | long
-        colors(dict[str, str]): info | error | warning | debug with respective color value
+        format (str): One of "simple", "logging", "detailed", or "long". Default is "simple".
+        colorscheme (dict[str, str]): A dictionary mapping log types (info, error, warning, debug) to colors.
+            Default is the `default_colors` dictionary.
+
+            default_colors = {
+                "info": "green",
+                "error": "red",
+                "warning": "yellow",
+                "debug": "blue",
+            }
     """
 
     def __init__(
@@ -38,7 +58,10 @@ class Logger:
 
     def info(self, msg: str):
         """
-        Prints out statement message with colored 'INFO:'
+        Prints out the message with colored 'INFO:' prefix.
+
+        Args:
+            msg (str): The message to log.
         """
         log = self.__set_output("info")
         if isinstance(msg, str):
@@ -46,7 +69,10 @@ class Logger:
 
     def error(self, msg: str):
         """
-        Prints out statement message with colored 'ERROR:'
+        Prints out the message with colored 'ERROR:' prefix.
+
+        Args:
+            msg (str): The message to log.
         """
         log = self.__set_output("error")
         if isinstance(msg, str):
@@ -54,7 +80,10 @@ class Logger:
 
     def debug(self, msg: str):
         """
-        Prints out statement message with colored 'DEBUG:'
+        Prints out the message with colored 'DEBUG:' prefix.
+
+        Args:
+            msg (str): The message to log.
         """
         log = self.__set_output("debug")
         if isinstance(msg, str):
@@ -62,7 +91,10 @@ class Logger:
 
     def warning(self, msg: str):
         """
-        Prints out statement message with colored 'warning:'
+        Prints out the message with colored 'WARNING:' prefix.
+
+        Args:
+            msg (str): The message to log.
         """
         log = self.__set_output("warning")
         if isinstance(msg, str):
@@ -70,7 +102,13 @@ class Logger:
 
     def __set_output(self, typeof: str):
         """
-        Sets the logging output accoring to configuration options.
+        Sets the logging output according to the configuration options.
+
+        Args:
+            typeof (str): The type of log (info, error, warning, debug).
+
+        Returns:
+            str: The formatted log string.
         """
         if self.format == "simple":
             text = self.__get_color(typeof)
@@ -108,6 +146,15 @@ class Logger:
             return f"{time} @{file}<{function}> - {text}"
 
     def __get_color(self, typeof: str):
+        """
+        Gets the color code for the log type.
+
+        Args:
+            typeof (str): The type of log (info, error, warning, debug).
+
+        Returns:
+            str: The colored log type string.
+        """
         _color_setting = self.colorscheme[typeof]
         _color = COLORS[_color_setting]
         _nc = COLORS["nc"]
@@ -115,6 +162,12 @@ class Logger:
         return f"{_color}{_capital_type}:{_nc}"
 
     def __get_date(self):
+        """
+        Gets the current date and time.
+
+        Returns:
+            str: The formatted current date and time.
+        """
         now = datetime.datetime.today()
         formatted_now = now.strftime("%Y-%m-%d %H:%M:%S")
         return formatted_now
