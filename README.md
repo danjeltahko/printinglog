@@ -34,8 +34,7 @@ logger.info("This is a INFO log")
 
 logger = Logger(format="long")
 logger.info("This is a INFO log")
->> INFO: This is a INFO log
-2024-07-26 22:55:28 @main<test_function> - INFO: This is a INFO log
+>> 2024-07-26 22:55:28 @main<test_function> - INFO: This is a INFO log
 ```
 
 To change the colors for each log type, you can also specify that:
